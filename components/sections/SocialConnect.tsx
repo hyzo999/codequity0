@@ -1,11 +1,16 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '../ui/button';
 
 export default function SocialConnect() {
+  const [isMounted, setIsMounted] = useState(false);
   const [hoveredSocial, setHoveredSocial] = useState<string | null>(null);
   const [notificationCount, setNotificationCount] = useState(12);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   const socialPlatforms = [
     {
@@ -146,7 +151,7 @@ export default function SocialConnect() {
             <div className="bg-neutral-light rounded-lg p-6 mb-8">
               <div className="relative h-48 bg-gradient-to-br from-primary-light to-secondary-light rounded-lg overflow-hidden">
                 {/* Map Dots */}
-                {[...Array(20)].map((_, i) => (
+                {isMounted && [...Array(20)].map((_, i) => (
                   <div
                     key={i}
                     className="absolute w-3 h-3 bg-primary rounded-full animate-pulse"
@@ -160,7 +165,7 @@ export default function SocialConnect() {
                 ))}
                 
                 {/* Connection Lines */}
-                <svg className="absolute inset-0 w-full h-full">
+                {isMounted && <svg className="absolute inset-0 w-full h-full">
                   {[...Array(8)].map((_, i) => (
                     <line
                       key={i}
@@ -174,7 +179,7 @@ export default function SocialConnect() {
                       style={{ animationDelay: `${Math.random() * 2}s` }}
                     />
                   ))}
-                </svg>
+                </svg>}
 
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="text-center text-neutral-dark">

@@ -235,7 +235,7 @@ export default function CommunityPage() {
                     <div className="space-y-3 text-sm text-neutral-gray mb-4">
                       <div className="flex items-center">
                         <span className="mr-2">📅</span>
-                        {new Date(event.date).toLocaleDateString()}
+                        {new Date(event.date).toLocaleDateString('en-US')}
                       </div>
                       <div className="flex items-center">
                         <span className="mr-2">🕒</span>
@@ -302,7 +302,7 @@ export default function CommunityPage() {
                       {event.title}
                     </h3>
                     <div className="flex items-center justify-between text-sm text-neutral-gray mb-3">
-                      <span>{new Date(event.date).toLocaleDateString()}</span>
+                      <span>{new Date(event.date).toLocaleDateString('en-US')}</span>
                       <span>{event.attendees} attendees</span>
                     </div>
                     <Button variant="outline" className="w-full">

@@ -23,6 +23,7 @@ interface Member {
 export default function MemberSpotlight() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(0);
+  const [daysActive, setDaysActive] = useState<{ [key: number]: number }>({});
 
   const members: Member[] = [
     {
@@ -120,6 +121,14 @@ export default function MemberSpotlight() {
       }
     });
   };
+
+  useEffect(() => {
+    const activeDays: { [key: number]: number } = {};
+    members.forEach(member => {
+      activeDays[member.id] = Math.floor((Date.now() - new Date(member.joinedDate).getTime()) / (1000 * 60 * 60 * 24));
+    });
+    setDaysActive(activeDays);
+  }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -281,7 +290,7 @@ export default function MemberSpotlight() {
                         </div>
                         <div className="bg-neutral-light rounded-lg p-4">
                           <div className="text-2xl font-bold text-secondary">
-                            {Math.floor((Date.now() - new Date(currentMember.joinedDate).getTime()) / (1000 * 60 * 60 * 24))}
+                            {daysActive[currentMember.id] || 0}
                           </div>
                           <div className="text-sm text-neutral-gray">Days Active</div>
                         </div>

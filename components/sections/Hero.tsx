@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { Button } from '../ui/button';
 
 export default function Hero() {
+  const [isMounted, setIsMounted] = useState(false);
   const [currentText, setCurrentText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
   const [textIndex, setTextIndex] = useState(0);
@@ -13,6 +14,10 @@ export default function Hero() {
     'Connect With Developers Worldwide',
     'Innovate Together, Grow Together'
   ];
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   useEffect(() => {
     const typeSpeed = isDeleting ? 50 : 100;
@@ -48,7 +53,7 @@ export default function Hero() {
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-primary-light via-white to-secondary-light">
       {/* Particle Background */}
       <div className="absolute inset-0">
-        {[...Array(50)].map((_, i) => (
+        {isMounted && [...Array(50)].map((_, i) => (
           <div
             key={i}
             className="absolute animate-pulse"

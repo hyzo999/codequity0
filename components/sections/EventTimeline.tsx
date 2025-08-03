@@ -147,7 +147,7 @@ export default function EventTimeline() {
                           {event.title}
                         </h3>
                         <span className="text-sm text-neutral-gray">
-                          {new Date(event.date).toLocaleDateString()}
+                          {new Date(event.date).toLocaleDateString('en-US')}
                         </span>
                       </div>
                       <p className="text-neutral-gray text-sm mb-3">

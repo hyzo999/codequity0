@@ -107,29 +107,29 @@ export default function Mission() {
 
             {/* Animated Underline for Key Phrase */}
             <div className="mt-8">
-              <h4 className="text-xl font-semibold text-neutral-dark mb-4">
+              <h4 className="text-xl font-semibold text-gray-900 mb-4 group">
                 <span className="relative inline-block">
                   Build What Deserves To Exist
-                  <span className="absolute bottom-0 left-0 w-0 h-1 bg-primary transition-all duration-500 group-hover:w-full"></span>
+                  <span className="absolute bottom-0 left-0 w-0 h-1 bg-blue-600 transition-all duration-500 group-hover:w-full"></span>
                 </span>
               </h4>
             </div>
           </div>
 
           <div className="relative">
-            <div className="bg-gradient-to-br from-primary-light to-secondary-light rounded-lg p-8 transform hover:scale-105 transition-transform duration-300">
+            <div className="bg-gradient-to-br from-blue-50 to-green-50 rounded-xl p-8 transform hover:scale-105 transition-transform duration-300 border border-gray-200 shadow-soft">
               <div className="text-center">
-                <h4 className="text-xl font-semibold text-neutral-dark mb-4">
+                <h4 className="text-xl font-semibold text-gray-900 mb-4">
                   Ready to Get Started?
                 </h4>
-                <p className="text-neutral-gray mb-6">
+                <p className="text-gray-600 mb-6">
                   Join our community and start building amazing things together.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <button className="bg-primary text-white px-6 py-3 rounded-lg font-medium hover:bg-primary-hover transition-all duration-300 transform hover:scale-105">
+                  <button className="bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-all duration-300 transform hover:scale-105 shadow-sm hover:shadow-md">
                     Join Community
                   </button>
-                  <button className="border border-primary text-primary px-6 py-3 rounded-lg font-medium hover:bg-primary hover:text-white transition-all duration-300 transform hover:scale-105">
+                  <button className="border-2 border-blue-600 text-blue-600 px-6 py-3 rounded-lg font-medium hover:bg-blue-600 hover:text-white transition-all duration-300 transform hover:scale-105">
                     Learn More
                   </button>
                 </div>
@@ -137,11 +137,11 @@ export default function Mission() {
             </div>
 
             {/* Floating Elements */}
-            <div className="absolute -top-4 -right-4 w-8 h-8 bg-accent/20 rounded-full animate-pulse"></div>
-            <div className="absolute -bottom-4 -left-4 w-6 h-6 bg-secondary/20 rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
+            <div className="absolute -top-4 -right-4 w-8 h-8 bg-purple-500/20 rounded-full animate-pulse"></div>
+            <div className="absolute -bottom-4 -left-4 w-6 h-6 bg-green-500/20 rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
           </div>
         </div>
       </div>
     </section>
   );
-} 
+}

@@ -110,12 +110,12 @@ export default function PerformanceMonitor() {
   }
 
   return (
-    <div className="fixed bottom-4 right-4 bg-white border border-neutral-border rounded-lg shadow-lg p-4 z-50 max-w-sm">
+    <div className="fixed bottom-4 right-4 bg-white border border-gray-200 rounded-lg shadow-lg p-4 z-50 max-w-sm">
       <div className="flex items-center justify-between mb-2">
-        <h3 className="text-sm font-semibold text-neutral-dark">Performance Metrics</h3>
+        <h3 className="text-sm font-semibold text-gray-900">Performance Metrics</h3>
         <button
           onClick={() => setIsVisible(!isVisible)}
-          className="text-neutral-gray hover:text-neutral-dark"
+          className="text-gray-500 hover:text-gray-700 p-1 rounded hover:bg-gray-100"
         >
           {isVisible ? '−' : '+'}
         </button>

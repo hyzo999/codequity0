@@ -1,16 +1,19 @@
 'use client';
 
-import { motion, useInView } from 'framer-motion';
-import { useRef, ReactNode } from 'react';
+import { motion, useInView, useAnimation } from 'framer-motion';
+import { useRef, useEffect, ReactNode } from 'react';
 
 interface ScrollAnimationProps {
   children: ReactNode;
   className?: string;
   delay?: number;
-  direction?: 'up' | 'down' | 'left' | 'right';
+  direction?: 'up' | 'down' | 'left' | 'right' | 'scale' | 'fade';
   distance?: number;
   duration?: number;
   once?: boolean;
+  threshold?: number;
+  stagger?: boolean;
+  staggerDelay?: number;
 }
 
 export default function ScrollAnimation({
@@ -20,20 +23,43 @@ export default function ScrollAnimation({
   direction = 'up',
   distance = 50,
   duration = 0.6,
-  once = true
+  once = true,
+  threshold = 0.1,
+  stagger = false,
+  staggerDelay = 0.1
 }: ScrollAnimationProps) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once, margin: '-100px' });
+  const isInView = useInView(ref, { 
+    once, 
+    margin: '-50px',
+    amount: threshold
+  });
+  const controls = useAnimation();
+
+  useEffect(() => {
+    if (isInView) {
+      controls.start('visible');
+    } else if (!once) {
+      controls.start('hidden');
+    }
+  }, [isInView, controls, once]);
 
   const getVariants = () => {
     const baseVariants = {
       hidden: {
         opacity: 0,
-        scale: 0.95
       },
       visible: {
         opacity: 1,
-        scale: 1
+        transition: {
+          duration,
+          delay,
+          ease: [0.16, 1, 0.3, 1],
+          ...(stagger && {
+            staggerChildren: staggerDelay,
+            delayChildren: delay
+          })
+        }
       }
     };
 
@@ -62,25 +88,51 @@ export default function ScrollAnimation({
           hidden: { ...baseVariants.hidden, x: -distance },
           visible: { ...baseVariants.visible, x: 0 }
         };
+      case 'scale':
+        return {
+          ...baseVariants,
+          hidden: { ...baseVariants.hidden, scale: 0.8 },
+          visible: { ...baseVariants.visible, scale: 1 }
+        };
+      case 'fade':
       default:
         return baseVariants;
     }
   };
 
+  const itemVariants = stagger ? {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: duration * 0.8,
+        ease: [0.16, 1, 0.3, 1]
+      }
+    }
+  } : undefined;
+
   return (
     <motion.div
       ref={ref}
       initial="hidden"
-      animate={isInView ? 'visible' : 'hidden'}
+      animate={controls}
       variants={getVariants()}
-      transition={{
-        duration,
-        delay,
-        ease: [0.25, 0.46, 0.45, 0.94]
-      }}
       className={className}
     >
-      {children}
+      {stagger ? (
+        React.Children.map(children, (child, index) => (
+          <motion.div
+            key={index}
+            variants={itemVariants}
+            custom={index}
+          >
+            {child}
+          </motion.div>
+        ))
+      ) : (
+        children
+      )}
     </motion.div>
   );
-} 
+}

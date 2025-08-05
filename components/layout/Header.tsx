@@ -2,11 +2,14 @@
 
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 import { Button } from '../ui/button';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,150 +24,191 @@ export default function Header() {
     setIsMenuOpen(false);
   };
 
+  const navItems = [
+    { href: '/', label: 'Home' },
+    { href: '/about', label: 'About' },
+    { href: '/community', label: 'Community' },
+    { href: '/partners', label: 'Partners' },
+    { href: '/contact', label: 'Contact' },
+    { href: '/connect', label: 'Connect' },
+  ];
+
+  const isActive = (href: string) => pathname === href;
+
   return (
-    <header 
+    <motion.header 
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
       className={`
-        fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b
-        ${isScrolled ? 'bg-white/95 backdrop-blur-lg shadow-lg border-gray-200' : 'bg-white/90 backdrop-blur-sm border-transparent'}
+        fixed top-0 left-0 right-0 z-50 transition-all duration-500 border-b
+        ${isScrolled 
+          ? 'bg-white/95 backdrop-blur-xl shadow-lg border-neutral-200/50' 
+          : 'bg-white/90 backdrop-blur-sm border-transparent'
+        }
       `}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <div className="flex-shrink-0">
-            <Link href="/" className="text-2xl font-bold text-blue-600 hover:text-blue-700 transition-colors no-underline">
-              CodeQuity
-            </Link>
-          </div>
-
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex space-x-8">
+          <motion.div 
+            className="flex-shrink-0"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
             <Link 
               href="/" 
-              className="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors no-underline hover:bg-gray-50 rounded-lg"
+              className="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent hover:from-primary-hover hover:to-accent-hover transition-all duration-300 no-underline"
             >
-              Home
+              CodeQuity
             </Link>
-            <Link 
-              href="/about" 
-              className="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors no-underline hover:bg-gray-50 rounded-lg"
-            >
-              About
-            </Link>
-            <Link 
-              href="/community" 
-              className="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors no-underline hover:bg-gray-50 rounded-lg"
-            >
-              Community
-            </Link>
-            <Link 
-              href="/partners" 
-              className="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors no-underline hover:bg-gray-50 rounded-lg"
-            >
-              Partners
-            </Link>
-            <Link 
-              href="/contact" 
-              className="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors no-underline hover:bg-gray-50 rounded-lg"
-            >
-              Contact
-            </Link>
-            <Link 
-              href="/connect" 
-              className="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors no-underline hover:bg-gray-50 rounded-lg"
-            >
-              Connect
-            </Link>
+          </motion.div>
+
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center space-x-1">
+            {navItems.map((item, index) => (
+              <motion.div
+                key={item.href}
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1, duration: 0.5 }}
+              >
+                <Link 
+                  href={item.href}
+                  className={`
+                    relative px-4 py-2 text-sm font-medium transition-all duration-300 rounded-lg no-underline group
+                    ${isActive(item.href) 
+                      ? 'text-primary bg-primary/10' 
+                      : 'text-neutral-700 hover:text-primary hover:bg-neutral-50'
+                    }
+                  `}
+                >
+                  {item.label}
+                  {isActive(item.href) && (
+                    <motion.div
+                      layoutId="activeTab"
+                      className="absolute inset-0 bg-primary/10 rounded-lg -z-10"
+                      transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                    />
+                  )}
+                  <span className="absolute inset-x-0 bottom-0 h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+                </Link>
+              </motion.div>
+            ))}
           </nav>
 
           {/* CTA Button */}
-          <div className="hidden md:block">
-            <Button variant="default" size="sm" className="shadow-sm">
+          <motion.div 
+            className="hidden md:block"
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.6, duration: 0.5 }}
+          >
+            <Button 
+              variant="gradient" 
+              size="sm" 
+              className="shadow-lg hover:shadow-xl"
+            >
               Get Started
             </Button>
-          </div>
+          </motion.div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden">
+          <motion.div 
+            className="md:hidden"
+            whileTap={{ scale: 0.95 }}
+          >
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-gray-700 hover:text-blue-600 focus:outline-none focus:text-blue-600 transition-colors p-2 rounded-lg hover:bg-gray-100"
+              className="text-neutral-700 hover:text-primary focus:outline-none focus:text-primary transition-colors p-2 rounded-lg hover:bg-neutral-100 relative"
               aria-label="Toggle menu"
             >
-              <svg 
-                className={`h-6 w-6 transition-transform duration-300 ${isMenuOpen ? 'rotate-90' : ''}`}
-                fill="none" 
-                viewBox="0 0 24 24" 
-                stroke="currentColor"
-              >
-                {isMenuOpen ? (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                ) : (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                )}
-              </svg>
+              <div className="w-6 h-6 flex flex-col justify-center items-center">
+                <motion.span
+                  animate={isMenuOpen ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="w-6 h-0.5 bg-current block absolute"
+                />
+                <motion.span
+                  animate={isMenuOpen ? { opacity: 0 } : { opacity: 1 }}
+                  transition={{ duration: 0.3 }}
+                  className="w-6 h-0.5 bg-current block absolute"
+                />
+                <motion.span
+                  animate={isMenuOpen ? { rotate: -45, y: -6 } : { rotate: 0, y: 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="w-6 h-0.5 bg-current block absolute"
+                />
+              </div>
             </button>
-          </div>
+          </motion.div>
         </div>
 
         {/* Mobile Navigation */}
-        <div 
-          className={`
-            md:hidden overflow-hidden transition-all duration-300 ease-in-out
-            ${isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}
-          `}
-        >
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white/95 backdrop-blur-sm rounded-lg mt-2 shadow-lg">
-            <Link 
-              href="/" 
-              className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-lg transition-all no-underline"
-              onClick={closeMenu}
+        <AnimatePresence>
+          {isMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              className="md:hidden overflow-hidden"
             >
-              Home
-            </Link>
-            <Link 
-              href="/about" 
-              className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-lg transition-all no-underline"
-              onClick={closeMenu}
-            >
-              About
-            </Link>
-            <Link 
-              href="/community" 
-              className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-lg transition-all no-underline"
-              onClick={closeMenu}
-            >
-              Community
-            </Link>
-            <Link 
-              href="/partners" 
-              className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-lg transition-all no-underline"
-              onClick={closeMenu}
-            >
-              Partners
-            </Link>
-            <Link 
-              href="/contact" 
-              className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-lg transition-all no-underline"
-              onClick={closeMenu}
-            >
-              Contact
-            </Link>
-            <Link 
-              href="/connect" 
-              className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-lg transition-all no-underline"
-              onClick={closeMenu}
-            >
-              Connect
-            </Link>
-            <div className="pt-2">
-              <Button variant="default" size="sm" className="w-full">
-                Get Started
-              </Button>
-            </div>
-          </div>
-        </div>
+              <motion.div 
+                className="px-2 pt-2 pb-3 space-y-1 bg-white/95 backdrop-blur-xl rounded-lg mt-2 shadow-xl border border-neutral-200/50"
+                initial={{ y: -20 }}
+                animate={{ y: 0 }}
+                transition={{ delay: 0.1, duration: 0.3 }}
+              >
+                {navItems.map((item, index) => (
+                  <motion.div
+                    key={item.href}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.05, duration: 0.3 }}
+                  >
+                    <Link 
+                      href={item.href}
+                      className={`
+                        block px-4 py-3 text-base font-medium rounded-lg transition-all duration-300 no-underline relative
+                        ${isActive(item.href)
+                          ? 'text-primary bg-primary/10 shadow-sm'
+                          : 'text-neutral-700 hover:text-primary hover:bg-neutral-50'
+                        }
+                      `}
+                      onClick={closeMenu}
+                    >
+                      {item.label}
+                      {isActive(item.href) && (
+                        <motion.div
+                          className="absolute left-0 top-0 bottom-0 w-1 bg-primary rounded-r"
+                          layoutId="activeMobileTab"
+                          transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                        />
+                      )}
+                    </Link>
+                  </motion.div>
+                ))}
+                <motion.div 
+                  className="pt-4 px-4"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4, duration: 0.3 }}
+                >
+                  <Button 
+                    variant="gradient" 
+                    size="sm" 
+                    className="w-full shadow-lg"
+                    onClick={closeMenu}
+                  >
+                    Get Started
+                  </Button>
+                </motion.div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
-    </header>
+    </motion.header>
   );
-} 
+}

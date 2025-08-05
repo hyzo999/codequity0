@@ -7,38 +7,52 @@ interface StaggeredAnimationProps {
   children: ReactNode;
   className?: string;
   staggerDelay?: number;
-  direction?: 'up' | 'down' | 'left' | 'right';
+  direction?: 'up' | 'down' | 'left' | 'right' | 'scale' | 'fade';
   distance?: number;
   duration?: number;
+  once?: boolean;
+  viewport?: {
+    once?: boolean;
+    margin?: string;
+    amount?: number;
+  };
 }
-
-const containerVariants: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1
-    }
-  }
-};
 
 export default function StaggeredAnimation({
   children,
   className = '',
   staggerDelay = 0.1,
   direction = 'up',
-  distance = 20,
-  duration = 0.5
+  distance = 30,
+  duration = 0.5,
+  once = true,
+  viewport = { once: true, margin: '-50px', amount: 0.1 }
 }: StaggeredAnimationProps) {
+  
+  const containerVariants: Variants = {
+    hidden: { 
+      opacity: 0 
+    },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: staggerDelay,
+        delayChildren: 0.1,
+        duration: 0.3
+      }
+    }
+  };
+
   const getItemVariants = (): Variants => {
     const baseVariants: Variants = {
-      hidden: { opacity: 0, scale: 0.95 },
+      hidden: { 
+        opacity: 0,
+      },
       visible: {
         opacity: 1,
-        scale: 1,
         transition: {
           duration,
-          ease: "easeOut"
+          ease: [0.16, 1, 0.3, 1]
         }
       }
     };
@@ -68,6 +82,13 @@ export default function StaggeredAnimation({
           hidden: { ...baseVariants.hidden, x: -distance },
           visible: { ...baseVariants.visible, x: 0 }
         };
+      case 'scale':
+        return {
+          ...baseVariants,
+          hidden: { ...baseVariants.hidden, scale: 0.8 },
+          visible: { ...baseVariants.visible, scale: 1 }
+        };
+      case 'fade':
       default:
         return baseVariants;
     }
@@ -77,7 +98,8 @@ export default function StaggeredAnimation({
     <motion.div
       variants={containerVariants}
       initial="hidden"
-      animate="visible"
+      whileInView="visible"
+      viewport={viewport}
       className={className}
     >
       {Array.isArray(children) ? (
@@ -85,10 +107,7 @@ export default function StaggeredAnimation({
           <motion.div
             key={index}
             variants={getItemVariants()}
-            custom={index}
-            transition={{
-              delay: index * staggerDelay
-            }}
+            className="w-full"
           >
             {child}
           </motion.div>
@@ -100,4 +119,4 @@ export default function StaggeredAnimation({
       )}
     </motion.div>
   );
-} 
+}

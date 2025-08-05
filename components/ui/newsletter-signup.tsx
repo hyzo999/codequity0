@@ -63,17 +63,17 @@ const NewsletterSignup = memo(function NewsletterSignup({
   }, [error]);
 
   return (
-    <div className={`bg-gradient-to-r from-primary-light to-secondary-light rounded-lg p-8 ${className}`}>
+    <div className={`bg-gradient-to-r from-blue-50 to-green-50 rounded-xl p-8 border border-gray-200 ${className}`}>
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
         className="text-center"
       >
-        <h3 className="text-2xl font-bold text-neutral-dark mb-4">
+        <h3 className="text-2xl font-bold text-gray-900 mb-4">
           {title}
         </h3>
-        <p className="text-neutral-gray mb-6 max-w-2xl mx-auto">
+        <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
           {description}
         </p>
 
@@ -90,7 +90,7 @@ const NewsletterSignup = memo(function NewsletterSignup({
                 value={email}
                 onChange={handleEmailChange}
                 placeholder={placeholder}
-                className="w-full px-4 py-3 rounded-lg border border-neutral-border focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-300"
+                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 shadow-sm"
                 disabled={isSubmitting}
               />
             </motion.div>
@@ -104,7 +104,7 @@ const NewsletterSignup = memo(function NewsletterSignup({
                 type="submit"
                 disabled={isSubmitting}
                 loading={isSubmitting}
-                className="w-full sm:w-auto bg-primary hover:bg-primary-hover text-white"
+                className="w-full sm:w-auto shadow-sm"
               >
                 {isSubmitting ? 'Subscribing...' : buttonText}
               </Button>
@@ -159,7 +159,7 @@ const NewsletterSignup = memo(function NewsletterSignup({
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5 }}
-          className="mt-6 text-xs text-neutral-gray"
+          className="mt-6 text-xs text-gray-500"
         >
           <p>We respect your privacy. Unsubscribe at any time.</p>
         </motion.div>

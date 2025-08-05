@@ -6,19 +6,19 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-neutral-dark text-white">
+    <footer className="bg-gray-900 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="space-y-4">
-            <h3 className="text-xl font-bold text-primary">CodeQuity</h3>
-            <p className="text-neutral-gray text-sm leading-relaxed">
+            <h3 className="text-xl font-bold text-blue-400">CodeQuity</h3>
+            <p className="text-gray-300 text-sm leading-relaxed">
               Empowering developers worldwide through innovative collaboration tools and community-driven solutions.
             </p>
             <div className="flex space-x-4">
               <a
                 href="https://twitter.com/codequity"
-                className="text-neutral-gray hover:text-primary transition-colors"
+                className="text-gray-400 hover:text-blue-400 transition-colors"
                 aria-label="Twitter"
               >
                 <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
@@ -27,7 +27,7 @@ export default function Footer() {
               </a>
               <a
                 href="https://linkedin.com/company/codequity"
-                className="text-neutral-gray hover:text-primary transition-colors"
+                className="text-gray-400 hover:text-blue-400 transition-colors"
                 aria-label="LinkedIn"
               >
                 <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
@@ -36,7 +36,7 @@ export default function Footer() {
               </a>
               <a
                 href="https://github.com/codequity"
-                className="text-neutral-gray hover:text-primary transition-colors"
+                className="text-gray-400 hover:text-blue-400 transition-colors"
                 aria-label="GitHub"
               >
                 <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
@@ -45,7 +45,7 @@ export default function Footer() {
               </a>
               <a
                 href="https://discord.gg/codequity"
-                className="text-neutral-gray hover:text-primary transition-colors"
+                className="text-gray-400 hover:text-blue-400 transition-colors"
                 aria-label="Discord"
               >
                 <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
@@ -60,27 +60,27 @@ export default function Footer() {
             <h4 className="text-lg font-semibold">Quick Links</h4>
             <ul className="space-y-2">
               <li>
-                <Link href="/about" className="text-neutral-gray hover:text-primary transition-colors text-sm">
+                <Link href="/about" className="text-gray-300 hover:text-blue-400 transition-colors text-sm no-underline">
                   About Us
                 </Link>
               </li>
               <li>
-                <Link href="/community" className="text-neutral-gray hover:text-primary transition-colors text-sm">
+                <Link href="/community" className="text-gray-300 hover:text-blue-400 transition-colors text-sm no-underline">
                   Community
                 </Link>
               </li>
               <li>
-                <Link href="/partners" className="text-neutral-gray hover:text-primary transition-colors text-sm">
+                <Link href="/partners" className="text-gray-300 hover:text-blue-400 transition-colors text-sm no-underline">
                   Partners
                 </Link>
               </li>
               <li>
-                <Link href="/connect" className="text-neutral-gray hover:text-primary transition-colors text-sm">
+                <Link href="/connect" className="text-gray-300 hover:text-blue-400 transition-colors text-sm no-underline">
                   Connect
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="text-neutral-gray hover:text-primary transition-colors text-sm">
+                <Link href="/contact" className="text-gray-300 hover:text-blue-400 transition-colors text-sm no-underline">
                   Contact
                 </Link>
               </li>
@@ -92,27 +92,27 @@ export default function Footer() {
             <h4 className="text-lg font-semibold">Resources</h4>
             <ul className="space-y-2">
               <li>
-                <Link href="/docs" className="text-neutral-gray hover:text-primary transition-colors text-sm">
+                <Link href="/docs" className="text-gray-300 hover:text-blue-400 transition-colors text-sm no-underline">
                   Documentation
                 </Link>
               </li>
               <li>
-                <Link href="/api" className="text-neutral-gray hover:text-primary transition-colors text-sm">
+                <Link href="/api" className="text-gray-300 hover:text-blue-400 transition-colors text-sm no-underline">
                   API Reference
                 </Link>
               </li>
               <li>
-                <Link href="/tutorials" className="text-neutral-gray hover:text-primary transition-colors text-sm">
+                <Link href="/tutorials" className="text-gray-300 hover:text-blue-400 transition-colors text-sm no-underline">
                   Tutorials
                 </Link>
               </li>
               <li>
-                <Link href="/blog" className="text-neutral-gray hover:text-primary transition-colors text-sm">
+                <Link href="/blog" className="text-gray-300 hover:text-blue-400 transition-colors text-sm no-underline">
                   Blog
                 </Link>
               </li>
               <li>
-                <Link href="/support" className="text-neutral-gray hover:text-primary transition-colors text-sm">
+                <Link href="/support" className="text-gray-300 hover:text-blue-400 transition-colors text-sm no-underline">
                   Support
                 </Link>
               </li>
@@ -122,7 +122,7 @@ export default function Footer() {
           {/* Contact Info */}
           <div className="space-y-4">
             <h4 className="text-lg font-semibold">Contact</h4>
-            <div className="space-y-2 text-sm text-neutral-gray">
+            <div className="space-y-2 text-sm text-gray-300">
               <p>Email: hello@codequity.com</p>
               <p>Phone: +1 (555) 123-4567</p>
               <p>Address: 123 Developer St, Tech City, TC 12345</p>
@@ -133,9 +133,9 @@ export default function Footer() {
                 <input
                   type="email"
                   placeholder="Enter your email"
-                  className="flex-1 px-3 py-2 text-sm bg-neutral-light text-neutral-dark rounded-l-md focus:outline-none focus:ring-2 focus:ring-primary"
+                  className="flex-1 px-3 py-2 text-sm bg-gray-100 text-gray-900 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
-                <button className="px-4 py-2 bg-primary text-white text-sm font-medium rounded-r-md hover:bg-primary-hover transition-colors">
+                <button className="px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-r-lg hover:bg-blue-700 transition-colors">
                   Subscribe
                 </button>
               </div>
@@ -144,19 +144,19 @@ export default function Footer() {
         </div>
 
         {/* Bottom Section */}
-        <div className="border-t border-neutral-gray/20 mt-8 pt-8">
+        <div className="border-t border-gray-700 mt-8 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <p className="text-neutral-gray text-sm">
+            <p className="text-gray-400 text-sm">
               © {currentYear} CodeQuity. All rights reserved.
             </p>
             <div className="flex space-x-6 text-sm">
-              <Link href="/privacy" className="text-neutral-gray hover:text-primary transition-colors">
+              <Link href="/privacy" className="text-gray-400 hover:text-blue-400 transition-colors no-underline">
                 Privacy Policy
               </Link>
-              <Link href="/terms" className="text-neutral-gray hover:text-primary transition-colors">
+              <Link href="/terms" className="text-gray-400 hover:text-blue-400 transition-colors no-underline">
                 Terms of Service
               </Link>
-              <Link href="/cookies" className="text-neutral-gray hover:text-primary transition-colors">
+              <Link href="/cookies" className="text-gray-400 hover:text-blue-400 transition-colors no-underline">
                 Cookie Policy
               </Link>
             </div>

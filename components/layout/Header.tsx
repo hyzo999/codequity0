@@ -24,15 +24,15 @@ export default function Header() {
   return (
     <header 
       className={`
-        fixed top-0 left-0 right-0 z-50 transition-all duration-300
-        ${isScrolled ? 'backdrop-blur-header shadow-lg' : 'bg-white/95 backdrop-blur-sm'}
+        fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b
+        ${isScrolled ? 'bg-white/95 backdrop-blur-lg shadow-lg border-gray-200' : 'bg-white/90 backdrop-blur-sm border-transparent'}
       `}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <Link href="/" className="text-2xl font-bold text-primary hover:text-primary-hover transition-colors">
+            <Link href="/" className="text-2xl font-bold text-blue-600 hover:text-blue-700 transition-colors no-underline">
               CodeQuity
             </Link>
           </div>
@@ -41,37 +41,37 @@ export default function Header() {
           <nav className="hidden md:flex space-x-8">
             <Link 
               href="/" 
-              className="text-neutral-dark hover:text-primary px-3 py-2 text-sm font-medium transition-colors"
+              className="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors no-underline hover:bg-gray-50 rounded-lg"
             >
               Home
             </Link>
             <Link 
               href="/about" 
-              className="text-neutral-dark hover:text-primary px-3 py-2 text-sm font-medium transition-colors"
+              className="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors no-underline hover:bg-gray-50 rounded-lg"
             >
               About
             </Link>
             <Link 
               href="/community" 
-              className="text-neutral-dark hover:text-primary px-3 py-2 text-sm font-medium transition-colors"
+              className="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors no-underline hover:bg-gray-50 rounded-lg"
             >
               Community
             </Link>
             <Link 
               href="/partners" 
-              className="text-neutral-dark hover:text-primary px-3 py-2 text-sm font-medium transition-colors"
+              className="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors no-underline hover:bg-gray-50 rounded-lg"
             >
               Partners
             </Link>
             <Link 
               href="/contact" 
-              className="text-neutral-dark hover:text-primary px-3 py-2 text-sm font-medium transition-colors"
+              className="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors no-underline hover:bg-gray-50 rounded-lg"
             >
               Contact
             </Link>
             <Link 
               href="/connect" 
-              className="text-neutral-dark hover:text-primary px-3 py-2 text-sm font-medium transition-colors"
+              className="text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors no-underline hover:bg-gray-50 rounded-lg"
             >
               Connect
             </Link>
@@ -79,7 +79,7 @@ export default function Header() {
 
           {/* CTA Button */}
           <div className="hidden md:block">
-            <Button variant="default" size="sm">
+            <Button variant="default" size="sm" className="shadow-sm">
               Get Started
             </Button>
           </div>
@@ -88,7 +88,7 @@ export default function Header() {
           <div className="md:hidden">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-neutral-dark hover:text-primary focus:outline-none focus:text-primary transition-colors p-2"
+              className="text-gray-700 hover:text-blue-600 focus:outline-none focus:text-blue-600 transition-colors p-2 rounded-lg hover:bg-gray-100"
               aria-label="Toggle menu"
             >
               <svg 
@@ -117,42 +117,42 @@ export default function Header() {
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white/95 backdrop-blur-sm rounded-lg mt-2 shadow-lg">
             <Link 
               href="/" 
-              className="block px-3 py-2 text-base font-medium text-neutral-dark hover:text-primary hover:bg-neutral-light rounded-md transition-all"
+              className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-lg transition-all no-underline"
               onClick={closeMenu}
             >
               Home
             </Link>
             <Link 
               href="/about" 
-              className="block px-3 py-2 text-base font-medium text-neutral-dark hover:text-primary hover:bg-neutral-light rounded-md transition-all"
+              className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-lg transition-all no-underline"
               onClick={closeMenu}
             >
               About
             </Link>
             <Link 
               href="/community" 
-              className="block px-3 py-2 text-base font-medium text-neutral-dark hover:text-primary hover:bg-neutral-light rounded-md transition-all"
+              className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-lg transition-all no-underline"
               onClick={closeMenu}
             >
               Community
             </Link>
             <Link 
               href="/partners" 
-              className="block px-3 py-2 text-base font-medium text-neutral-dark hover:text-primary hover:bg-neutral-light rounded-md transition-all"
+              className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-lg transition-all no-underline"
               onClick={closeMenu}
             >
               Partners
             </Link>
             <Link 
               href="/contact" 
-              className="block px-3 py-2 text-base font-medium text-neutral-dark hover:text-primary hover:bg-neutral-light rounded-md transition-all"
+              className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-lg transition-all no-underline"
               onClick={closeMenu}
             >
               Contact
             </Link>
             <Link 
               href="/connect" 
-              className="block px-3 py-2 text-base font-medium text-neutral-dark hover:text-primary hover:bg-neutral-light rounded-md transition-all"
+              className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-lg transition-all no-underline"
               onClick={closeMenu}
             >
               Connect

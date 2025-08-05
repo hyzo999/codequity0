@@ -5,22 +5,22 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '../../lib/utils';
 
 const buttonVariants = cva(
-  'inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-all duration-300 focus-ring disabled:pointer-events-none disabled:opacity-50',
+  'inline-flex items-center justify-center whitespace-nowrap rounded-lg text-sm font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 disabled:cursor-not-allowed select-none',
   {
     variants: {
       variant: {
-        default: 'bg-primary text-white hover:bg-primary-hover hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0',
-        secondary: 'bg-secondary text-white hover:bg-secondary-hover hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0',
-        accent: 'bg-accent text-white hover:bg-accent-hover hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0',
-        outline: 'border border-neutral-border bg-transparent hover:bg-neutral-light hover:text-neutral-dark hover:border-primary',
-        ghost: 'hover:bg-neutral-light hover:text-neutral-dark',
-        destructive: 'bg-red-500 text-white hover:bg-red-600 hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0',
+        default: 'bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500 shadow-sm hover:shadow-md active:scale-95',
+        secondary: 'bg-green-600 text-white hover:bg-green-700 focus:ring-green-500 shadow-sm hover:shadow-md active:scale-95',
+        accent: 'bg-purple-600 text-white hover:bg-purple-700 focus:ring-purple-500 shadow-sm hover:shadow-md active:scale-95',
+        outline: 'border-2 border-gray-300 bg-white text-gray-700 hover:bg-gray-50 hover:border-blue-600 hover:text-blue-600 focus:ring-blue-500',
+        ghost: 'text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:ring-gray-500',
+        destructive: 'bg-red-600 text-white hover:bg-red-700 focus:ring-red-500 shadow-sm hover:shadow-md active:scale-95',
       },
       size: {
-        default: 'h-10 px-4 py-2',
-        sm: 'h-8 rounded-md px-3 text-xs',
-        lg: 'h-12 rounded-md px-8 text-base',
-        xl: 'h-14 rounded-md px-10 text-lg',
+        default: 'h-10 px-4 py-2 text-sm',
+        sm: 'h-8 px-3 text-xs',
+        lg: 'h-12 px-8 text-base',
+        xl: 'h-14 px-10 text-lg',
         icon: 'h-10 w-10',
       },
     },

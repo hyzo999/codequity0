@@ -24,10 +24,10 @@ const Card = React.forwardRef<
     <div
       ref={ref}
       className={cn(
-        'rounded-lg border border-neutral-border bg-white shadow-sm transition-all duration-500',
+        'rounded-xl border border-gray-200 bg-white shadow-sm transition-all duration-300',
         animate && !isVisible && 'opacity-0 translate-y-8',
         animate && isVisible && 'opacity-100 translate-y-0',
-        'hover:shadow-lg hover:-translate-y-1',
+        'hover:shadow-lg hover:-translate-y-1 hover:border-gray-300',
         className
       )}
       {...props}

@@ -10,27 +10,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        primary: {
-          DEFAULT: '#3B82F6',
-          hover: '#2563EB',
-          light: '#DBEAFE',
-        },
-        secondary: {
-          DEFAULT: '#10B981',
-          hover: '#059669',
-          light: '#D1FAE5',
-        },
-        accent: {
-          DEFAULT: '#8B5CF6',
-          hover: '#7C3AED',
-          light: '#EDE9FE',
-        },
-        neutral: {
-          dark: '#1F2937',
-          light: '#F9FAFB',
-          gray: '#6B7280',
-          border: '#E5E7EB',
-        },
+        // Using standard Tailwind colors for better consistency
       },
       fontFamily: {
         heading: ['Inter', 'sans-serif'],
@@ -99,6 +79,15 @@ const config: Config = {
       },
       backdropBlur: {
         header: '10px',
+      },
+      boxShadow: {
+        'soft': '0 2px 15px -3px rgba(0, 0, 0, 0.07), 0 10px 20px -2px rgba(0, 0, 0, 0.04)',
+        'medium': '0 4px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+        'large': '0 10px 50px -12px rgba(0, 0, 0, 0.25)',
+      },
+      spacing: {
+        '18': '4.5rem',
+        '88': '22rem',
       },
     },
   },

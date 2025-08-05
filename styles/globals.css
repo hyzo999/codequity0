@@ -29,7 +29,7 @@
   }
 
   * {
-    @apply border-neutral-border;
+    border-color: var(--neutral-border);
   }
 
   body {
